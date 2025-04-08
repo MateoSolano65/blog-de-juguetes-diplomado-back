@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { validateMongo } from '../helpers/validateMongo.helper.js';
+import { validateMongo } from '../helpers/validate-mongo.helper.js';
 
 const userSchema = new Schema(
   {

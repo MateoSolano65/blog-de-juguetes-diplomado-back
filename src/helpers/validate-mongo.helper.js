@@ -1,4 +1,4 @@
-import { HttpError } from './errorHandler.helper.js';
+import { HttpError } from './error-handler.helper.js';
 
 function validateMongo(error, doc, next) {
   if (error.name === 'MongoServerError' && error.code === 11000) {

@@ -1,7 +1,7 @@
 import { User } from '../models/users.model.js';
 
 import { USER_NOT_FOUND } from '../constants/user.constants.js';
-import { HttpError } from '../helpers/errorHandler.helper.js';
+import { HttpError } from '../helpers/error-handler.helper.js';
 
 class UsersService {
   async create(dataUser) {
