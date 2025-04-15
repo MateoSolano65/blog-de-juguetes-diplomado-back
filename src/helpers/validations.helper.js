@@ -60,3 +60,39 @@ export const IsIn = (fieldName, values, required) => {
     .isIn(values)
     .withMessage(`${fieldName} must be one of: ${values.join(', ')}`);
 };
+
+export const IsNumber = (fieldName, required, options) => {
+  if (required) {
+    return body(fieldName)
+      .notEmpty()
+      .withMessage(`${fieldName} is required`)
+      .bail()
+      .isNumeric()
+      .withMessage(`${fieldName} must be a number`)
+      .bail()
+      .custom((value) => {
+        if (options?.min && value < options.min) {
+          throw new Error(`${fieldName} must be greater than or equal to ${options.min}`);
+        }
+        if (options?.max && value > options.max) {
+          throw new Error(`${fieldName} must be less than or equal to ${options.max}`);
+        }
+        return true;
+      });
+  }
+
+  return body(fieldName)
+    .optional()
+    .isNumeric()
+    .withMessage(`${fieldName} must be a number`)
+    .bail()
+    .custom((value) => {
+      if (options?.min && value < options.min) {
+        throw new Error(`${fieldName} must be greater than or equal to ${options.min}`);
+      }
+      if (options?.max && value > options.max) {
+        throw new Error(`${fieldName} must be less than or equal to ${options.max}`);
+      }
+      return true;
+    });
+}
