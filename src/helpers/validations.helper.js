@@ -42,3 +42,21 @@ export const IsEmail = (fieldName, required) => {
     .isEmail()
     .withMessage(`${fieldName} must be a valid email address`);
 };
+
+export const IsIn = (fieldName, values, required) => {
+  if (required) {
+    return body(fieldName)
+      .trim()
+      .notEmpty()
+      .withMessage(`${fieldName} is required`)
+      .bail()
+      .isIn(values)
+      .withMessage(`${fieldName} must be one of: ${values.join(', ')}`);
+  }
+
+  return body(fieldName)
+    .optional()
+    .trim()
+    .isIn(values)
+    .withMessage(`${fieldName} must be one of: ${values.join(', ')}`);
+};

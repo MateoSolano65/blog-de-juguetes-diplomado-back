@@ -58,6 +58,15 @@ class UsersController {
 
     return res.status(204).send();
   }
+
+  async updateRole(req = request, res = response) {
+    const { id } = req.params;
+    const { role } = req.body;
+
+    const userUpdate = await userService.update(id, { role });
+
+    return res.status(200).json(formatUserResponse(userUpdate));
+  }
 }
 
 const usersController = new UsersController();
