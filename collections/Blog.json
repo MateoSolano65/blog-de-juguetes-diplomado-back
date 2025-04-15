@@ -1,0 +1,126 @@
+{
+  "v": 6,
+  "name": "Blog",
+  "folders": [
+    {
+      "v": 6,
+      "name": "Users",
+      "folders": [],
+      "requests": [
+        {
+          "v": "11",
+          "name": "get-all-users",
+          "method": "GET",
+          "endpoint": "<<BASE_URL>>/users",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "get-user-by-id",
+          "method": "GET",
+          "endpoint": "<<BASE_URL>>/users/67f482cb828f28479aa8024e",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "create-user",
+          "method": "POST",
+          "endpoint": "<<BASE_URL>>/users",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\r\n    \"password\" : \"q342352ss\",\r\n    \"email\" : \"juancamilosanchez@camilo.com\",\r\n    \"name\" : \"camilo\"\r\n}"
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "update-user",
+          "method": "PUT",
+          "endpoint": "<<BASE_URL>>/users/67f482cb828f28479aa8024e",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "delete-user",
+          "method": "DELETE",
+          "endpoint": "<<BASE_URL>>/users/67f482cb828f28479aa8024e",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "_ref_id": "coll_m9glz968_e5e56598-c106-43fa-8532-f1f19a96f3e5"
+    }
+  ],
+  "requests": [],
+  "auth": {
+    "authType": "inherit",
+    "authActive": true
+  },
+  "headers": [],
+  "_ref_id": "coll_m9glz968_fcce70c0-52a1-4178-82e0-ac6febb39739"
+}
