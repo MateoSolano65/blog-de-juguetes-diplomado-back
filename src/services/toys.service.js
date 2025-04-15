@@ -51,18 +51,18 @@ class ToysService {
 
     if ( !toy ) throw new HttpError( TOY_NOT_FOUND, 404 );
 
-    // Crear la información de la imagen
+    // Create the image information
     const imageInfo = {
       filename: imageFile.filename,
       path: imageFile.path
     };
 
-    // Si es la primera imagen y no hay imagen principal, establecerla como principal
+    // If this is the first image and there is no main image, set it as the main one
     if ( !toy.imageUrl ) {
       toy.imageUrl = `${ UPLOADS_PATH }/${ imageFile.filename }`;
     }
 
-    // Agregar la nueva imagen al array de imágenes
+    // Add the new image to the images array
     if ( !toy.images ) {
       toy.images = [];
     }
@@ -80,12 +80,12 @@ class ToysService {
 
     if ( !toy ) throw new HttpError( TOY_NOT_FOUND, 404 );
 
-    // Si no hay imágenes previas, inicializar el array
+    // If there are no previous images, initialize the array
     if ( !toy.images ) {
       toy.images = [];
     }
 
-    // Procesar cada imagen subida
+    // Process each uploaded image
     for ( const file of imageFiles ) {
       const imageInfo = {
         filename: file.filename,
@@ -94,7 +94,7 @@ class ToysService {
 
       toy.images.push( imageInfo );
 
-      // Si es la primera imagen y no hay imagen principal, establecerla como principal
+      // If this is the first image and there is no main image, set it as the main one
       if ( !toy.imageUrl ) {
         toy.imageUrl = `${ UPLOADS_PATH }/${ file.filename }`;
       }
@@ -111,23 +111,23 @@ class ToysService {
 
     if ( !toy ) throw new HttpError( TOY_NOT_FOUND, 404 );
 
-    // Buscar la imagen en el array
+    // Find the image in the array
     const imageIndex = toy.images.findIndex( img => img.filename === imageFilename );
 
     if ( imageIndex === -1 ) throw new HttpError( IMAGE_NOT_FOUND, 404 );
 
-    // Eliminar el archivo físico
+    // Delete the physical file
     const deleted = deleteImage( imageFilename );
 
     if ( deleted ) {
-      // Eliminar la referencia de la imagen del array
+      // Remove the image reference from the array
       toy.images.splice( imageIndex, 1 );
 
-      // Si la imagen eliminada era la principal, actualizar la imagen principal si hay otra disponible
+      // If the deleted image was the main one, update the main image if another is available
       if ( toy.imageUrl.includes( imageFilename ) && toy.images.length > 0 ) {
         toy.imageUrl = `${ UPLOADS_PATH }/${ toy.images[ 0 ].filename }`;
       } else if ( toy.imageUrl.includes( imageFilename ) ) {
-        toy.imageUrl = '';  // No hay más imágenes
+        toy.imageUrl = '';  // No more images
       }
 
       toy.updatedAt = Date.now();
@@ -142,12 +142,12 @@ class ToysService {
 
     if ( !toy ) throw new HttpError( TOY_NOT_FOUND, 404 );
 
-    // Verificar que la imagen existe en el array
+    // Verify that the image exists in the array
     const imageExists = toy.images.some( img => img.filename === imageFilename );
 
     if ( !imageExists ) throw new HttpError( IMAGE_NOT_FOUND, 404 );
 
-    // Establecer la nueva imagen principal
+    // Set the new main image
     toy.imageUrl = `${ UPLOADS_PATH }/${ imageFilename }`;
     toy.updatedAt = Date.now();
 

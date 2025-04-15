@@ -14,7 +14,7 @@ router.get(`${prefix}/:id`, toysController.findById);
 router.put(`${prefix}/:id`, toyUpdateCheck, toysController.update);
 router.delete(`${prefix}/:id`, toysController.delete);
 
-// Rutas para gestionar imágenes
+// Routes for image management
 router.post(`${prefix}/:id/images`, handleUploadErrors, toysController.addImage);
 router.post(`${prefix}/:id/images/multiple`, handleMultipleUploadErrors, toysController.addMultipleImages);
 router.get(`${prefix}/:id/images`, toysController.getAllImages);
