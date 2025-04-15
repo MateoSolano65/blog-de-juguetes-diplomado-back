@@ -19,6 +19,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Configurar carpeta para archivos estáticos usando variables de entorno
+const uploadsPath = process.env.UPLOADS_PATH || '/uploads/toys';
+const uploadsDir = process.env.UPLOADS_DIR || './uploads/toys';
+
+// Configurar la ruta para servir archivos estáticos
+app.use( uploadsPath, express.static( join( __dirname, uploadsDir.startsWith( './' ) ? uploadsDir.substring( 2 ) : uploadsDir ) ) );
+
 const routesPath = join(__dirname, './src/routes');
 const routeFiles = await readdir(routesPath);
 

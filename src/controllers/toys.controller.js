@@ -41,6 +41,72 @@ class ToysController {
 
     return res.status(204).send();
   }
+
+  // Método para agregar una imagen al juguete
+  async addImage( req = request, res = response ) {
+    const { id } = req.params;
+    const file = req.file;
+
+    if ( !file ) {
+      return res.status( 400 ).json( { message: 'No se ha subido ninguna imagen' } );
+    }
+
+    const updatedToy = await toyService.addImage( id, file );
+
+    return res.status( 200 ).json( {
+      message: 'Imagen agregada correctamente',
+      toy: updatedToy
+    } );
+  }
+
+  // Método para agregar múltiples imágenes al juguete
+  async addMultipleImages( req = request, res = response ) {
+    const { id } = req.params;
+    const files = req.files;
+
+    if ( !files || files.length === 0 ) {
+      return res.status( 400 ).json( { message: 'No se ha subido ninguna imagen' } );
+    }
+
+    const updatedToy = await toyService.addMultipleImages( id, files );
+
+    return res.status( 200 ).json( {
+      message: `Se agregaron ${ files.length } imágenes correctamente`,
+      toy: updatedToy
+    } );
+  }
+
+  // Método para eliminar una imagen del juguete
+  async deleteImage( req = request, res = response ) {
+    const { id, filename } = req.params;
+
+    await toyService.deleteImage( id, filename );
+
+    return res.status( 200 ).json( {
+      message: 'Imagen eliminada correctamente'
+    } );
+  }
+
+  // Método para establecer una imagen como la principal
+  async setMainImage( req = request, res = response ) {
+    const { id, filename } = req.params;
+
+    const updatedToy = await toyService.setMainImage( id, filename );
+
+    return res.status( 200 ).json( {
+      message: 'Imagen principal actualizada correctamente',
+      toy: updatedToy
+    } );
+  }
+
+  // Método para obtener todas las imágenes de un juguete
+  async getAllImages( req = request, res = response ) {
+    const { id } = req.params;
+
+    const images = await toyService.getAllImages( id );
+
+    return res.status( 200 ).json( images );
+  }
 }
 
 const toysController = new ToysController();

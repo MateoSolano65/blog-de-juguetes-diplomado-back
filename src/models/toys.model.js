@@ -32,6 +32,14 @@ const toySchema = new mongoose.Schema({
     type: String,  // URL de una imagen del juguete (opcional)
     required: false
   },
+  images: [{
+    filename: String,
+    path: String,
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
   tags: {
     type: [String], // Para agregar etiquetas relacionadas con el artículo, como "recomendado", "para niños", etc.
     required: false
