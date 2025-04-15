@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Configure static files folder using environment variables
-const uploadsPath = process.env.UPLOADS_PATH || '/uploads/toys';
+const uploadsPath = process.env.UPLOADS_PATH || '/toys-images';
 const uploadsDir = process.env.UPLOADS_DIR || './uploads/toys';
 
 // Configure the route to serve static files
