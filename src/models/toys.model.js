@@ -44,15 +44,9 @@ const toySchema = new mongoose.Schema({
     type: [String], // Para agregar etiquetas relacionadas con el artículo, como "recomendado", "para niños", etc.
     required: false
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+},
+  { timestamps: true, versionKey: false },
+);
 
 toySchema.post('save', validateMongo);
 toySchema.post('findOneAndUpdate', validateMongo);

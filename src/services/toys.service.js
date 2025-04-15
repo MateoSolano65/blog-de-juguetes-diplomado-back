@@ -68,7 +68,6 @@ class ToysService {
     }
 
     toy.images.push( imageInfo );
-    toy.updatedAt = Date.now();
 
     await toy.save();
 
@@ -100,7 +99,6 @@ class ToysService {
       }
     }
 
-    toy.updatedAt = Date.now();
     await toy.save();
 
     return toy;
@@ -130,7 +128,6 @@ class ToysService {
         toy.imageUrl = '';  // No more images
       }
 
-      toy.updatedAt = Date.now();
       await toy.save();
     }
 
@@ -149,7 +146,6 @@ class ToysService {
 
     // Set the new main image
     toy.imageUrl = `${ UPLOADS_PATH }/${ imageFilename }`;
-    toy.updatedAt = Date.now();
 
     await toy.save();
 
