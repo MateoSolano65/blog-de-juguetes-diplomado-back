@@ -80,6 +80,8 @@ src/
   ├── routes/             # Definición de rutas de la API
   ├── services/           # Lógica de negocio
   └── validators/         # Validadores para las solicitudes
+uploads/
+  └── toys/               # Carpeta donde se almacenan las imágenes de juguetes
 ```
 
 ## API Endpoints
@@ -97,6 +99,68 @@ La API utiliza la base `/api/v1.0` para todas las rutas.
 - `POST /api/v1.0/users` - Crear un nuevo usuario
 - `PUT /api/v1.0/users/:id` - Actualizar un usuario
 - `DELETE /api/v1.0/users/:id` - Eliminar un usuario
+- `PATCH /api/v1.0/users/:id/role` - Actualizar el rol de un usuario
+
+### Juguetes:
+
+- `GET /api/v1.0/toys` - Obtener todos los juguetes
+- `GET /api/v1.0/toys/:id` - Obtener un juguete específico
+- `POST /api/v1.0/toys` - Crear un nuevo juguete
+- `PUT /api/v1.0/toys/:id` - Actualizar un juguete
+- `DELETE /api/v1.0/toys/:id` - Eliminar un juguete
+
+### Gestión de imágenes de juguetes:
+
+- `POST /api/v1.0/toys/:id/images` - Añadir una imagen a un juguete
+- `POST /api/v1.0/toys/:id/images/multiple` - Añadir múltiples imágenes a un juguete
+- `GET /api/v1.0/toys/:id/images` - Obtener todas las imágenes de un juguete
+- `DELETE /api/v1.0/toys/:id/images/:filename` - Eliminar una imagen de un juguete
+- `PUT /api/v1.0/toys/:id/images/:filename/main` - Establecer una imagen como principal
+
+## Modelo de datos
+
+### Usuario
+
+```json
+{
+  "_id": "ObjectId",
+  "name": "String",
+  "email": "String",
+  "password": "String (hashed)",
+  "role": "String (user/admin)",
+  "createdAt": "Date",
+  "updatedAt": "Date"
+}
+```
+
+### Juguete
+
+```json
+{
+  "_id": "ObjectId",
+  "title": "String",
+  "category": "String",
+  "description": "String",
+  "review": "String",
+  "rating": "Number (1-5)",
+  "imageUrl": "String",
+  "images": [
+    {
+      "filename": "String",
+      "isMain": "Boolean"
+    }
+  ],
+  "tags": ["String"],
+  "createdAt": "Date",
+  "updatedAt": "Date"
+}
+```
+
+## Acceso a las imágenes
+
+Las imágenes subidas se pueden acceder directamente a través de la URL:
+
+- `http://localhost:3000/toys-images/:filename` - Donde `:filename` es el nombre del archivo de imagen
 
 ## Contribución
 

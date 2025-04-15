@@ -19,7 +19,7 @@ const toySchema = new mongoose.Schema({
     required: true
   },
   review: {
-    type: String, // Aquí puedes incluir una reseña del juguete
+    type: String, // Here you can include a toy review
     required: true
   },
   rating: {
@@ -29,9 +29,17 @@ const toySchema = new mongoose.Schema({
     required: true
   },
   imageUrl: {
-    type: String,  // URL de una imagen del juguete (opcional)
+    type: String,  // URL of a toy image (optional)
     required: false
   },
+  images: [{
+    filename: String,
+    path: String,
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
   tags: {
     type: [String], // Para agregar etiquetas relacionadas con el artículo, como "recomendado", "para niños", etc.
     required: false
@@ -49,7 +57,7 @@ const toySchema = new mongoose.Schema({
 toySchema.post('save', validateMongo);
 toySchema.post('findOneAndUpdate', validateMongo);
 
-// Crear el modelo de juguete
+// Create the toy model
 const Toy = model('Toy', toySchema);
 
 export { Toy };

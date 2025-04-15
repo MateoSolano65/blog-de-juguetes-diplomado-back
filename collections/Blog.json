@@ -1,9 +1,11 @@
 {
   "v": 6,
+  "id": "cm9ipceyx3shufudin7jokgp8",
   "name": "Blog",
   "folders": [
     {
       "v": 6,
+      "id": "cm9ipceze3shvfudik8fcjb7p",
       "name": "Users",
       "folders": [],
       "requests": [
@@ -31,7 +33,7 @@
           "v": "11",
           "name": "get-user-by-id",
           "method": "GET",
-          "endpoint": "<<BASE_URL>>/users/67f482cb828f28479aa8024e",
+          "endpoint": "<<BASE_URL>>/users/67fdaaf2268662aabb2ca80f",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -62,7 +64,7 @@
           },
           "body": {
             "contentType": "application/json",
-            "body": "{\r\n    \"password\" : \"q342352ss\",\r\n    \"email\" : \"juancamilosanchez@camilo.com\",\r\n    \"name\" : \"camilo\"\r\n}"
+            "body": "{\n    \"password\" : \"q342352ss\",\n    \"email\" : \"juancamilosanchez@camilo.comm\",\n    \"name\" : \"camilo\"\n}"
           },
           "requestVariables": [],
           "responses": {}
@@ -71,7 +73,7 @@
           "v": "11",
           "name": "update-user",
           "method": "PUT",
-          "endpoint": "<<BASE_URL>>/users/67f482cb828f28479aa8024e",
+          "endpoint": "<<BASE_URL>>/users/67fdaaf2268662aabb2ca80f",
           "params": [],
           "headers": [],
           "preRequestScript": "",
@@ -81,8 +83,8 @@
             "authActive": true
           },
           "body": {
-            "contentType": null,
-            "body": null
+            "contentType": "application/json",
+            "body": "{\n  \"password\": \"q342352ss\",\n  \"email\": \"juancamilosanchez@camilo.com\",\n  \"name\": \"camilo\",\n  \"role\": \"user\"\n}\n"
           },
           "requestVariables": [],
           "responses": {}
@@ -106,6 +108,26 @@
           },
           "requestVariables": [],
           "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "update-user-rol",
+          "method": "PATCH",
+          "endpoint": "<<BASE_URL>>/users/67fdaaf2268662aabb2ca80f/role",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"role\": \"admin\"\n}"
+          },
+          "requestVariables": [],
+          "responses": {}
         }
       ],
       "auth": {
@@ -113,7 +135,270 @@
         "authActive": true
       },
       "headers": [],
-      "_ref_id": "coll_m9glz968_e5e56598-c106-43fa-8532-f1f19a96f3e5"
+      "_ref_id": "coll_m9iyge0j_ebbd50d3-6be6-4ffd-bf5a-808a420a8ba2"
+    },
+    {
+      "v": 6,
+      "id": "cm9ipcf183si8fudiwwxja3mg",
+      "name": "Toys",
+      "folders": [
+        {
+          "v": 6,
+          "id": "cm9iqld8v3sqyfudia87fr2r5",
+          "name": "images",
+          "folders": [],
+          "requests": [
+            {
+              "v": "11",
+              "name": "get-all-images",
+              "method": "GET",
+              "endpoint": "<<BASE_URL>>/toys/67fe7ea69736667e423b202f/images",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {}
+            },
+            {
+              "v": "11",
+              "name": "add-image",
+              "method": "POST",
+              "endpoint": "<<BASE_URL>>/toys/67fe7ea69736667e423b202f/images",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "multipart/form-data",
+                "body": [
+                  {
+                    "key": "image",
+                    "active": true,
+                    "isFile": false,
+                    "value": ""
+                  }
+                ]
+              },
+              "requestVariables": [],
+              "responses": {}
+            },
+            {
+              "v": "11",
+              "name": "add-multiple-images",
+              "method": "POST",
+              "endpoint": "<<BASE_URL>>/toys/67fe7ea69736667e423b202f/images/multiple",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": "multipart/form-data",
+                "body": [
+                  {
+                    "key": "images",
+                    "active": true,
+                    "isFile": false,
+                    "value": ""
+                  }
+                ]
+              },
+              "requestVariables": [],
+              "responses": {}
+            },
+            {
+              "v": "11",
+              "name": "delete-image",
+              "method": "DELETE",
+              "endpoint": "<<BASE_URL>>/toys/67fe7ea69736667e423b202f/images/88d0222f-2d75-476b-9dbe-00a53d61570a.webp",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {}
+            },
+            {
+              "v": "11",
+              "name": "set-main-image",
+              "method": "PUT",
+              "endpoint": "<<BASE_URL>>/toys/67fe7ea69736667e423b202f/images/e4a86d2c-61e9-426b-a417-82f006b3c9b5.webp/main",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {}
+            },
+            {
+              "v": "11",
+              "name": "view-image",
+              "method": "GET",
+              "endpoint": "http://localhost:3000/toys-images/b1a80df7-626f-43c0-889c-bdebcf3dcc65.webp",
+              "params": [],
+              "headers": [],
+              "preRequestScript": "",
+              "testScript": "",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "contentType": null,
+                "body": null
+              },
+              "requestVariables": [],
+              "responses": {}
+            }
+          ],
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "headers": [],
+          "_ref_id": "coll_m9iyge0j_8f8d2b25-8885-435f-8c12-82f7ae2dd2b8"
+        }
+      ],
+      "requests": [
+        {
+          "v": "11",
+          "name": "get-all-toys",
+          "method": "GET",
+          "endpoint": "<<BASE_URL>>/toys",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "get-toy-by-id",
+          "method": "GET",
+          "endpoint": "<<BASE_URL>>/toys/67fe7ea69736667e423b202f",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "create-toy",
+          "method": "POST",
+          "endpoint": "<<BASE_URL>>/toys",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"title\": \"Lego Star Wars - El juego de construcción definitivo\",\n  \"category\": \"Carroos\",\n  \"description\": \"El set Lego Star Wars es perfecto para los fanáticos de Star Wars y los Legos. Construye tu propia nave espacial y disfruta de horas de diversión.\",\n  \"review\": \"Este set de Lego es uno de los mejores para los fanáticos de Star Wars. Las piezas son fáciles de manejar y el diseño es impresionante. Es una excelente forma de estimular la creatividad en los niños.\",\n  \"rating\": 5,\n  \"imageUrl\": null,\n  \"tags\": [\"recomendados\", \"Star Wars\", \"para niños\", \"juguetes educativos\"]\n}\n\n\n\n/*\nEJEMPLO DE UN DOC\n\n\n{\n  \"_id\": \"605c72efc5b47b1a1b9e9f1f\",\n  \"title\": \"Lego Star Wars - El juego de construcción definitivo\",\n  \"category\": \"Legos\",\n  \"description\": \"El set Lego Star Wars es perfecto para los fanáticos de Star Wars y los Legos. Construye tu propia nave espacial y disfruta de horas de diversión.\",\n  \"review\": \"Este set de Lego es uno de los mejores para los fanáticos de Star Wars. Las piezas son fáciles de manejar y el diseño es impresionante. Es una excelente forma de estimular la creatividad en los niños.\",\n  \"rating\": 5,\n  \"imageUrl\": \"http://example.com/images/lego_star_wars.jpg\",\n  \"tags\": [\"recomendado\", \"Star Wars\", \"para niños\", \"juguetes educativos\"],\n  \"createdAt\": \"2025-04-15T00:00:00.000Z\",\n  \"updatedAt\": \"2025-04-15T00:00:00.000Z\"\n}\n*/"
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "update-toy",
+          "method": "PUT",
+          "endpoint": "<<BASE_URL>>/toys/67fe7ea69736667e423b202f",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"title\": \"Carrito de carreras de collecion\",\n  \"category\": \"Carros\",\n  \"description\": \"El set Lego Star Wars es perfecto para los fanáticos de Star Wars y los Legos. Construye tu propia nave espacial y disfruta de horas de diversión.\",\n  \"review\": \"Este set de Lego es uno de los mejores para los fanáticos de Star Wars. Las piezas son fáciles de manejar y el diseño es impresionante. Es una excelente forma de estimular la creatividad en los niños.\",\n  \"rating\": 5,\n  \"imageUrl\": null,\n  \"tags\": [\"recomendados\", \"Star Wars\", \"para niños\", \"juguetes educativos\"]\n}\n\n"
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "delete-toy",
+          "method": "DELETE",
+          "endpoint": "<<BASE_URL>>/toys/67fe7ed87e83cde2503b6277",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "_ref_id": "coll_m9iyge0j_2f621d1d-adb3-4546-b8b2-80ca05e64e3e"
     }
   ],
   "requests": [],
@@ -122,5 +407,5 @@
     "authActive": true
   },
   "headers": [],
-  "_ref_id": "coll_m9glz968_fcce70c0-52a1-4178-82e0-ac6febb39739"
+  "_ref_id": "coll_m9iyge0j_56671175-8cda-48ff-91bc-e7a44d1dc36a"
 }

@@ -19,6 +19,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Configure static files folder using environment variables
+const uploadsPath = process.env.UPLOADS_PATH || '/toys-images';
+const uploadsDir = process.env.UPLOADS_DIR || './uploads/toys';
+
+// Configure the route to serve static files
+app.use( uploadsPath, express.static( join( __dirname, uploadsDir.startsWith( './' ) ? uploadsDir.substring( 2 ) : uploadsDir ) ) );
+
 const routesPath = join(__dirname, './src/routes');
 const routeFiles = await readdir(routesPath);
 
