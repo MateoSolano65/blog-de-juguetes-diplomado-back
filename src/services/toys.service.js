@@ -43,71 +43,77 @@ class ToysService {
 
     if (!toyDelete) throw new HttpError(TOY_NOT_FOUND, 404);
 
+    const filesName = toyDelete.images.map((img) => img.filename);
+    const filesDelete = [...filesName, toyDelete.imageUrl];
+    filesDelete.forEach((file) => deleteImage(file));
+
     return toyDelete;
   }
 
   async addImage( id, imageFile ) {
-    const toy = await Toy.findById( id );
-
-    if ( !toy ) throw new HttpError( TOY_NOT_FOUND, 404 );
-
-    // Create the image information
-    const imageInfo = {
-      filename: imageFile.filename,
-      path: imageFile.path
-    };
-
-    // If this is the first image and there is no main image, set it as the main one
-    if ( !toy.imageUrl ) {
-      toy.imageUrl = `${ UPLOADS_PATH }/${ imageFile.filename }`;
-    }
-
-    // Add the new image to the images array
-    if ( !toy.images ) {
-      toy.images = [];
-    }
-
-    toy.images.push( imageInfo );
-
-    await toy.save();
-
-    return toy;
-  }
-
-  async addMultipleImages( id, imageFiles ) {
-    const toy = await Toy.findById( id );
-
-    if ( !toy ) throw new HttpError( TOY_NOT_FOUND, 404 );
-
-    // If there are no previous images, initialize the array
-    if ( !toy.images ) {
-      toy.images = [];
-    }
-
-    // Process each uploaded image
-    for ( const file of imageFiles ) {
+    try {
+      const toy = await this.findById( id );
+      // Create the image information
       const imageInfo = {
-        filename: file.filename,
-        path: file.path
+        filename: imageFile.filename,
+        path: imageFile.path
       };
-
-      toy.images.push( imageInfo );
 
       // If this is the first image and there is no main image, set it as the main one
       if ( !toy.imageUrl ) {
-        toy.imageUrl = `${ UPLOADS_PATH }/${ file.filename }`;
+        toy.imageUrl = `${ UPLOADS_PATH }/${ imageFile.filename }`;
       }
+
+      // Add the new image to the images array
+      if ( !toy.images ) {
+        toy.images = [];
+      }
+
+      toy.images.push(imageInfo);
+
+      await toy.save();
+
+      return toy;
+    } catch (error) {
+      deleteImage( imageFile.filename );
+      throw error;
     }
+  }
 
-    await toy.save();
+  async addMultipleImages( id, imageFiles ) {
+    try {
+      const toy = await  this.findById( id );
+      // If there are no previous images, initialize the array
+      if ( !toy.images ) {
+        toy.images = [];
+      }
 
-    return toy;
+      // Process each uploaded image
+      for ( const file of imageFiles ) {
+        const imageInfo = {
+          filename: file.filename,
+          path: file.path
+        };
+
+        toy.images.push( imageInfo );
+
+        // If this is the first image and there is no main image, set it as the main one
+        if ( !toy.imageUrl ) {
+          toy.imageUrl = `${ UPLOADS_PATH }/${ file.filename }`;
+        }
+      }
+
+      await toy.save();
+
+      return toy;
+    } catch (error) {
+      imageFiles.forEach( file => deleteImage( file.filename ) );
+      throw error;
+    }
   }
 
   async deleteImage( toyId, imageFilename ) {
-    const toy = await Toy.findById( toyId );
-
-    if ( !toy ) throw new HttpError( TOY_NOT_FOUND, 404 );
+    const toy = await this.findById( toyId );
 
     // Find the image in the array
     const imageIndex = toy.images.findIndex( img => img.filename === imageFilename );
