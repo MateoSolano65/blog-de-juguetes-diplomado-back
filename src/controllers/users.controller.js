@@ -42,8 +42,7 @@ class UsersController {
     const { body } = req;
 
     if (body.password) {
-      const passwordHash = await PasswordHelper.hashPassword(body.password);
-      body.password = passwordHash;
+      body.password = await PasswordHelper.hashPassword(body.password);
     }
 
     const userUpdate = await userService.update(id, body);
